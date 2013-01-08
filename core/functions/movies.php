@@ -7,8 +7,15 @@
  
  }
 
-function add_movie($name, $image,$imdb,$night_id,$date,$theme){
-	exit();
-
+function add_movie($mdata){
+	array_walk($mdata, 'array_sanitize');
+	print_r($mdata);
+	$data = "'" . implode("','", $mdata)."'";
+	$fields =  implode(",",array_keys($mdata));
+	mysql_query("INSERT INTO movies ($fields) VALUES ($data)");
+	//header("Location: makenight.php?success");
+	echo "INSERT INTO movies ($fields) VALUES ($data)";
+	return true;
+	
 } 
  ?>

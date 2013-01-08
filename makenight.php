@@ -6,15 +6,71 @@ protect_page_admin($user_data['uname'], $admins);
 include 'includes/overall/overall_head.php';
 $nextid = latest_night_id() + 1; 
 
-
-if (empty($_POST)=== false){
-
-
-
-}
 ?>
 
       <h1>Create movie night</h1>
+	  
+<?php
+	if (isset($_GET['success'])){
+	echo "Movie night successfully added";
+	} else {
+		//NO ERROR CHECKING!
+		if (empty($_POST) === false ){
+			$movie_data1 = array(
+			'name' 	=> $_POST['1name'],
+			'picture'	=> $_POST['1image'],
+			'imdb' 		=> $_POST['1imdb'],
+			'nightid' 	=> $nextid,
+			'nightdate' => $_POST['date'],
+			'theme'		=> $_POST['theme']
+			);
+						$movie_data2 = array(
+			'name' 	=> $_POST['2name'],
+			'picture'	=> $_POST['2image'],
+			'imdb' 		=> $_POST['2imdb'],
+			'nightid' 	=> $nextid,
+			'nightdate' => $_POST['date'],
+			'theme'		=> $_POST['theme']
+			);
+						$movie_data3 = array(
+			'name' 	=> $_POST['3name'],
+			'picture'	=> $_POST['3image'],
+			'imdb' 		=> $_POST['3imdb'],
+			'nightid' 	=> $nextid,
+			'nightdate' => $_POST['date'],
+			'theme'		=> $_POST['theme']
+			);
+						$movie_data4 = array(
+			'name' 	=> $_POST['4name'],
+			'picture'	=> $_POST['4image'],
+			'imdb' 		=> $_POST['4imdb'],
+			'nightid' 	=> $nextid,
+			'nightdate' => $_POST['date'],
+			'theme'		=> $_POST['theme']
+			);
+						$movie_data5 = array(
+			'name' 	=> $_POST['5name'],
+			'picture'	=> $_POST['5image'],
+			'imdb' 		=> $_POST['5imdb'],
+			'nightid' 	=> $nextid,
+			'nightdate' => $_POST['date'],
+			'theme'		=> $_POST['theme']
+			);
+			
+			
+			
+			add_movie($movie_data1);
+			add_movie($movie_data2);
+			add_movie($movie_data3);
+			add_movie($movie_data4);
+			add_movie($movie_data5);
+			
+			header("Location: makenight.php?success");
+						
+		} 
+
+
+?>	  
 	<form action="" method = "POST">
 		<table border="0">
 		<tr>
@@ -54,4 +110,8 @@ if (empty($_POST)=== false){
 		</table>
 		<input type="submit" value ="Create">
 	</form>
-<?php include 'includes/overall/overall_foot.php';?>
+<?php 
+}
+include 'includes/overall/overall_foot.php';
+
+?>

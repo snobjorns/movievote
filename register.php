@@ -37,21 +37,21 @@
 	if (isset($_GET['success'])){
 	echo "You are now registered";
 	} else {
-	
-	if (empty($_POST) === false && empty($errors) === true ){
-		$register_data = array(
-		'uname' 	=> $_POST['uname'],
-		'password'	=> $_POST['password'],
-		'name' 		=> $_POST['name'],
-		'email' 	=> $_POST['email']
-		);
-		register_user($register_data);
-		//redirect
-		//exit
-	} else if (empty($errors) === false ){
-		//echo "<h3>Please fix the following errors</h3><br>";
-		echo output_errors($errors);		
-	}
+		
+		if (empty($_POST) === false && empty($errors) === true ){
+			$register_data = array(
+			'uname' 	=> $_POST['uname'],
+			'password'	=> $_POST['password'],
+			'name' 		=> $_POST['name'],
+			'email' 	=> $_POST['email']
+			);
+			register_user($register_data);
+			//redirect
+			//exit
+		} else if (empty($errors) === false ){
+			//echo "<h3>Please fix the following errors</h3><br>";
+			echo output_errors($errors);		
+		}
 	?>
 	  
 	  <form action="" method="POST">

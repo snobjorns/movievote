@@ -20,9 +20,16 @@
 function protect_page(){
 	if (logged_in() === false){
 		header('Location: protected.php');
-		exit();
+		exit(); 
 	}
 } 
  
+ //$user_data[''] and $admins are for some reason not defined here
+function protect_page_admin($uname, $admins){
+	if (in_array($uname , $admins) === false){
+		header('Location: protected_admin.php');
+		exit();
+	}
+} 
  
  ?>

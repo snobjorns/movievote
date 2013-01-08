@@ -4,7 +4,7 @@
     <div class="inner">
       <ul>
 	  <li><a href ="logout.php">Log out</a></li>
-	  <li><a href="snorre">My Profile</a></li>
+	  <li><a href="<?php echo $user_data['uname']; ?>">My Profile</a></li>
 	  </ul>
     </div>
 </div>

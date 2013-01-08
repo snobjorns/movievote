@@ -1,6 +1,5 @@
  <?php 
  include 'core/init.php';
- protect_page();
  include 'includes/overall/overall_head.php';
  
  if (empty($_POST)=== false){

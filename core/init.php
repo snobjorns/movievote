@@ -3,6 +3,7 @@ session_start();
 //error_reporting(0); 
 require 'database/connect.php';
 require 'functions/users.php';
+require 'functions/movies.php';
 require 'functions/general.php';
 
 if (logged_in() === true) {

@@ -1,4 +1,8 @@
  <?php
+ $admins = array();
+ $admins[] = "snorre";
+ 
+ 
  function user_count(){
 	$query = mysql_query("SELECT COUNT('uid') FROM users WHERE star != 0");
 	return mysql_result($query, 0);

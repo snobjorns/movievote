@@ -1,10 +1,10 @@
  <?php
  function sanitize($data) {
-	return mysql_real_escape_string($data);
+	return htmlentities(mysql_real_escape_string($data));
  }
  
  function array_sanitize(&$item){
-	$item = mysql_real_escape_string($item);
+	$item = htmlentities(mysql_real_escape_string($item));
  }
 
  function output_errors($errors) {

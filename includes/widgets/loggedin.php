@@ -4,7 +4,7 @@
     <div class="inner">
       <ul>
 	  <li><a href ="logout.php">Log out</a></li>
-	  <li><a href="changepassword.php"> Change password</a></li>
+	  <li><a href="snorre">My Profile</a></li>
 	  </ul>
     </div>
 </div>

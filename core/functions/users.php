@@ -34,6 +34,12 @@
 	return (mysql_result($query, 0) == 1) ? TRUE : FALSE;
  }
  
+ function email_exist($email){
+	$username = sanitize($email);
+	$query = mysql_query("SELECT COUNT('uid') FROM users WHERE email = '$email' ");
+	return (mysql_result($query, 0) == 1) ? TRUE : FALSE;
+ }
+ 
  function uid_from_uname($username){
  	$username = sanitize($username);
 	$query = mysql_query("SELECT uid FROM users WHERE uname = '$username'");
@@ -51,4 +57,17 @@
 	
 	return(mysql_result($query,0 ) == 1) ? $uid : false;
  }
+ 
+ function register_user($udata){
+	array_walk($udata, 'array_sanitize');
+	$udata['password'] = md5($udata['password']);
+	//print_r($udata);
+	$data = "'" . implode("','", $udata)."'";
+	$fields =  implode(",",array_keys($udata));
+	mysql_query("INSERT INTO users ($fields) VALUES ($data)");
+	header("Location: register.php?success");
+	exit();
+	//echo "INSERT INTO users ($fields) VALUES ($data)";
+ }
+ 
  ?>

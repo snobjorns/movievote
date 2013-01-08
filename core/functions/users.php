@@ -1,4 +1,9 @@
  <?php
+ function user_count(){
+	$query = mysql_query("SELECT COUNT('uid') FROM users WHERE star != 0");
+	return mysql_result($query, 0);
+ }
+ 
  function user_data($uid){
 	$data = array();
 	$uid = (int)$uid;

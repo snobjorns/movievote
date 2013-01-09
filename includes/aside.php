@@ -5,7 +5,7 @@
 			<?php 
 			if (logged_in()) {
 				include 'includes/widgets/loggedin.php';
-				if (in_array($user_data['uname'], $admins)){
+				if (is_admin()){
 					include 'includes/widgets/admin_pane.php';
 				}
 				include 'includes/widgets/globalstats.php';

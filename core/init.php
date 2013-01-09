@@ -8,7 +8,7 @@ require 'functions/general.php';
 
 if (logged_in() === true) {
 	$session_user_id = $_SESSION['uid'];
-	$user_data = user_data($session_user_id, 'uid','uname','name', 'email','star','attends','penalties');
+	$user_data = user_data($session_user_id, 'uid','uname','name', 'email','star','attends','penalties','admin');
 }
 
 $errors = array();

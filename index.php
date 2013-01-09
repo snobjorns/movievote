@@ -5,7 +5,7 @@ include 'includes/overall/overall_head.php';
 
 ?>
 
-      <h1>Home</h1>
+      <h1>Next movies</h1>
       <p>Just a template.</p>
 		
 

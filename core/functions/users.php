@@ -1,6 +1,6 @@
  <?php
- $admins = array();
- $admins[] = "snorre";
+
+ 
  
  
  function user_count(){
@@ -30,6 +30,12 @@
  function logged_in() {
 	return(isset($_SESSION['uid']) ? true : false);
  }
+
+ function is_admin() {
+	global $user_data;
+	return($user_data['admin'] == 1 ? true : false);
+ }
+
  
  function user_exist($username){
 	$username = sanitize($username);

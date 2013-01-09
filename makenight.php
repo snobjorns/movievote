@@ -1,8 +1,8 @@
- 
+
 <?php 
 include 'core/init.php';
 protect_page();
-protect_page_admin($user_data['uname'], $admins);
+protect_page_admin();
 include 'includes/overall/overall_head.php';
 $nextid = latest_night_id() + 1; 
 
@@ -71,6 +71,8 @@ $nextid = latest_night_id() + 1;
 
 
 ?>	  
+
+	
 	<form action="" method = "POST">
 		<table border="0">
 		<tr>

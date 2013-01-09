@@ -120,3 +120,6 @@ footer {
     clear:both;
 }/* CSS Document */
 
+img.poster {
+	width: 50%;
+}

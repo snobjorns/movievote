@@ -25,8 +25,8 @@ function protect_page(){
 } 
  
  //$user_data[''] and $admins are for some reason not defined here
-function protect_page_admin($uname, $admins){
-	if (in_array($uname , $admins) === false){
+function protect_page_admin(){
+	if (is_admin() == 0){
 		header('Location: protected_admin.php');
 		exit();
 	}

@@ -3,6 +3,9 @@
 include 'core/init.php';
 include 'includes/overall/overall_head.php';
 
+
+
+
 ?>
 
       <h1>Next movies</h1>

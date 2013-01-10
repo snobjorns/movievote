@@ -22,7 +22,7 @@ if (empty($_GET)){
 	}	
 	echo "</ul>";
 		
-	/*view info about MOvie night*/
+	/*view info about Movie night*/
 } else {	
 	$nightid = $_GET['id'];
 	$night = get_night_data($nightid); 
@@ -31,6 +31,9 @@ if (empty($_GET)){
 	array_push($items, "picture","name","votes","votevalue");
 	
 	echo "<h2>".$night['theme'].", ".$night['nightdate']."</h2>";
+	if ( $time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60)) {
+		echo "You cannot view votes for this movie night because the polls are not closed yet. The polls closes ". time_to_datehour(day_before($night['nightdate'] .'20:00:00')) ." ." ;
+	}
 	
 	echo "<table border = '1'>";
 	echo "<tr><td></td><td></td><td>Number of Votes</td><td>Vote value</td></tr>";
@@ -42,7 +45,13 @@ if (empty($_GET)){
 			} elseif ($item == 'name' ) {
 				echo "<td><a href='".$movie['imdb']."'>".$movie[$item]."</a></td>";
 			} else {
-				echo "<td>".$movie[$item]."</td>";
+				if ( $time >= (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60)) {
+				//if ( $time >= (datehour_to_time("2013-1-13","00:10:00")-24*60*60)) { 					
+					echo "<td>".$movie[$item]."</td>";
+					
+				} else{
+					echo "<td> N/A </td>";
+				}
 			}
 			//print_r($items);
 		}

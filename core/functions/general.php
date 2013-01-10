@@ -31,5 +31,25 @@ function protect_page_admin(){
 		exit();
 	}
 } 
+
+function datehour_to_time($date,$hour){
+	$time = strtotime($date ." ". $hour);
+
+	return $time;
+}
+
+function day_before($date){
+	$time = (strtotime($date) - 60*60*24);
+
+	return $time;
+}
+
+function time_to_datehour($time){
+	
+	$datehour = date("Y-m-d H:i:s",$time);
+	
+	return $datehour;
+}
+
  
  ?>

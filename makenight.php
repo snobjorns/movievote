@@ -22,7 +22,8 @@ $nextid = latest_night_id() + 1;
 			'imdb' 		=> $_POST['1imdb'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
-			'theme'		=> $_POST['theme']
+			'theme'		=> $_POST['theme'],
+			'nighttime'	=>$_POST['time']
 			);
 						$movie_data2 = array(
 			'name' 	=> $_POST['2name'],
@@ -30,7 +31,8 @@ $nextid = latest_night_id() + 1;
 			'imdb' 		=> $_POST['2imdb'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
-			'theme'		=> $_POST['theme']
+			'theme'		=> $_POST['theme'],
+			'nighttime'	=>$_POST['time']
 			);
 						$movie_data3 = array(
 			'name' 	=> $_POST['3name'],
@@ -38,7 +40,8 @@ $nextid = latest_night_id() + 1;
 			'imdb' 		=> $_POST['3imdb'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
-			'theme'		=> $_POST['theme']
+			'theme'		=> $_POST['theme'],
+			'nighttime'	=>$_POST['time']
 			);
 						$movie_data4 = array(
 			'name' 	=> $_POST['4name'],
@@ -46,7 +49,8 @@ $nextid = latest_night_id() + 1;
 			'imdb' 		=> $_POST['4imdb'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
-			'theme'		=> $_POST['theme']
+			'theme'		=> $_POST['theme'],
+			'nighttime'	=>$_POST['time']
 			);
 						$movie_data5 = array(
 			'name' 	=> $_POST['5name'],
@@ -54,30 +58,42 @@ $nextid = latest_night_id() + 1;
 			'imdb' 		=> $_POST['5imdb'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
-			'theme'		=> $_POST['theme']
+			'theme'		=> $_POST['theme'],
+			'nighttime'	=>$_POST['time']
 			);
 			
 			
-			
-			add_movie($movie_data1);
-			add_movie($movie_data2);
-			add_movie($movie_data3);
-			add_movie($movie_data4);
-			add_movie($movie_data5);
-			
+			$movies = array();
+			array_push($movies,$movie_data1,$movie_data2,$movie_data3,$movie_data4,$movie_data5);
+			foreach($movies as $movie){
+				if (empty($movie['name']) === false){
+					add_movie($movie);
+				}
+			}
 			header("Location: makenight.php?success");
 						
 		} 
 
 
 ?>	  
+<script type="text/javascript">
 
+
+
+$(document).ready(function(){
+
+	$("#clockpick").clockpick();
+});
+
+
+</script>
 	
 	<form action="" method = "POST">
 		<table border="0">
 		<tr>
 		<td><input type="text" name="theme" value = "Theme"></td>
 		<td><input type="date" name="date" value = "Date"></td>
+		<td><input name="time" type="text" value = "Time"  id="clockpick"></td>
 		</tr>
 		<tr>
 		<td>Movie name</td>

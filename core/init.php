@@ -5,6 +5,9 @@ require 'database/connect.php';
 require 'functions/users.php';
 require 'functions/movies.php';
 require 'functions/general.php';
+require 'functions/votes.php';
+
+
 
 if (logged_in() === true) {
 	$session_user_id = $_SESSION['uid'];

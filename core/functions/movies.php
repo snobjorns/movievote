@@ -35,4 +35,12 @@ function  get_night_data($nightid){
 	return $result;
 
 }
+
+function get_omdbapi($id){
+
+ $json = file_get_contents("http://www.omdbapi.com/?i=". $id);
+ $result = json_decode($json, true);
+return $result;
+
+}
  ?>

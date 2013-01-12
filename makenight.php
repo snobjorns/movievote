@@ -9,62 +9,77 @@ $nextid = latest_night_id() + 1;
 ?>
 
       <h1>Create movie night</h1>
-	  
+		
 <?php
 	if (isset($_GET['success'])){
 	echo "Movie night successfully added";
 	} else {
 		//NO ERROR CHECKING!
 		if (empty($_POST) === false ){
-			$movie_data1 = array(
-			'name' 	=> $_POST['1name'],
-			'picture'	=> $_POST['1image'],
-			'imdb' 		=> $_POST['1imdb'],
-			'nightid' 	=> $nextid,
-			'nightdate' => $_POST['date'],
-			'theme'		=> $_POST['theme'],
-			'nighttime'	=>$_POST['time']
-			);
-						$movie_data2 = array(
-			'name' 	=> $_POST['2name'],
-			'picture'	=> $_POST['2image'],
-			'imdb' 		=> $_POST['2imdb'],
+
+
+			$movies = array();
+			
+			$ids = array();
+			array_push($ids, $_POST['id1'], $_POST['id2'], $_POST['id3'], $_POST['id4'], $_POST['id5'] );
+			print_r($_POST);
+			print_r($ids);
+			foreach($ids as $id){
+				if (empty($id) == false){ 
+					$omdb = get_omdbapi($id);
+					print_r($omdb);
+					if($omdb['Response'] == true){
+						$movies[] = array(
+						'name' 	=> $omdb['Title'],
+						'picture'	=> $omdb['Poster'],
+						'imdb' 		=> "http://www.imdb.com/title/" . $omdb['imdbID'],
+						'nightid' 	=> $nextid,
+						'nightdate' => $_POST['date'],
+						'theme'		=> $_POST['theme'],
+						'nighttime'	=>$_POST['time']
+						);
+					}
+				}
+			}
+				/*		$movie_data2 = array(
+			'name' 	=> $omdb['Title'],
+			'picture'	=> $omdb['Poster'],
+			'imdb' 		=> "http://www.imdb.com/title/" . $omdb['imdbID'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
 			'theme'		=> $_POST['theme'],
 			'nighttime'	=>$_POST['time']
 			);
 						$movie_data3 = array(
-			'name' 	=> $_POST['3name'],
-			'picture'	=> $_POST['3image'],
-			'imdb' 		=> $_POST['3imdb'],
+			'name' 	=> $omdb['Title'],
+			'picture'	=> $omdb['Poster'],
+			'imdb' 		=> "http://www.imdb.com/title/" . $omdb['imdbID'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
 			'theme'		=> $_POST['theme'],
 			'nighttime'	=>$_POST['time']
 			);
 						$movie_data4 = array(
-			'name' 	=> $_POST['4name'],
-			'picture'	=> $_POST['4image'],
-			'imdb' 		=> $_POST['4imdb'],
+			'name' 	=> $omdb['Title'],
+			'picture'	=> $omdb['Poster'],
+			'imdb' 		=> "http://www.imdb.com/title/" . $omdb['imdbID'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
 			'theme'		=> $_POST['theme'],
 			'nighttime'	=>$_POST['time']
 			);
 						$movie_data5 = array(
-			'name' 	=> $_POST['5name'],
-			'picture'	=> $_POST['5image'],
-			'imdb' 		=> $_POST['5imdb'],
+			'name' 	=> $omdb['Title'],
+			'picture'	=> $omdb['Poster'],
+			'imdb' 		=> "http://www.imdb.com/title/" . $omdb['imdbID'],
 			'nightid' 	=> $nextid,
 			'nightdate' => $_POST['date'],
 			'theme'		=> $_POST['theme'],
 			'nighttime'	=>$_POST['time']
 			);
+			*/
 			
 			
-			$movies = array();
-			array_push($movies,$movie_data1,$movie_data2,$movie_data3,$movie_data4,$movie_data5);
 			foreach($movies as $movie){
 				if (empty($movie['name']) === false){
 					add_movie($movie);
@@ -88,6 +103,44 @@ $(document).ready(function(){
 
 </script>
 	
+	<form action="" method ="POST">
+	<ul>
+	<li>
+	<input type="text" name="theme" value = "Theme">
+	</li>
+	<li>
+	<input type="date" name="date" value = "Date">
+	</li>
+	<li>
+	<input name="time" type="text" value = "Time"  id="clockpick">
+	</li>
+	<li>
+	IMDB ID:
+	</li>
+	<li>
+			Movie 1: <input type="text" name="id1" >
+	</li>
+	<li>
+			Movie 2: <input type="text" name="id2" >
+	</li>
+	<li>
+			Movie 3: <input type="text" name="id3" >
+	</li>
+	<li>
+			Movie 4: <input type="text" name="id4" >
+	</li>
+	<li>
+			Movie 5: <input type="text" name="id5" >
+	</li>
+	<li>
+			<input type="submit" value ="Create">
+
+	</li>
+	</ul>
+	</form>
+
+
+	<!--
 	<form action="" method = "POST">
 		<table border="0">
 		<tr>
@@ -96,7 +149,7 @@ $(document).ready(function(){
 		<td><input name="time" type="text" value = "Time"  id="clockpick"></td>
 		</tr>
 		<tr>
-		<td>Movie name</td>
+		<td>Movie</td>
 		<td>Image link</td>
 		<td>IMDB link</td>
 		</tr>
@@ -128,7 +181,9 @@ $(document).ready(function(){
 		</table>
 		<input type="submit" value ="Create">
 	</form>
-<?php 
+
+	-->
+	<?php 
 }
 include 'includes/overall/overall_foot.php';
 

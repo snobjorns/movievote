@@ -11,5 +11,4 @@ include 'includes/overall/overall_head.php';
       <h1>Next movies</h1>
       <p>Just a template.</p>
 		
-
 <?php include 'includes/overall/overall_foot.php';?>

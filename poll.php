@@ -2,7 +2,7 @@
 <?php 
 include 'core/init.php';
 include 'includes/overall/overall_head.php';
-
+protect_page();
 ?>
 
 

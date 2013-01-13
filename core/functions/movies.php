@@ -30,7 +30,7 @@ function get_movie_datas($nightid){
 }
 
 function  get_night_data($nightid){
-	$query = mysql_query("SELECT nightdate,theme FROM movies WHERE nightid = $nightid");
+	$query = mysql_query("SELECT nightid,nighttime,nightdate,theme FROM movies WHERE nightid = $nightid");
 	$result =mysql_fetch_assoc($query);
 	return $result;
 
@@ -43,4 +43,6 @@ function get_omdbapi($id){
 return $result;
 
 }
+
+
  ?>

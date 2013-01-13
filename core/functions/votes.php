@@ -19,12 +19,29 @@
 	return $results;
  }
  
+ function calc_star($n, $p){
+	 return (1+log10(2*$n+1))/(2^(($p/($n+1))));
+ }
+ 
  function confirm_att($array,$nightid){
 	$unames =array_keys($array);
-	$fields = "(voter = '" .implode("' OR voter = '",$unames) . "')";
-	mysql_query("UPDATE votes SET status = 1 WHERE $fields AND night_id = $nightid ");
-
-		//change attend/star on users
+	
+	foreach ($array as $uname => $status){
+		mysql_query("UPDATE votes SET status = $status WHERE voter = '$uname' AND night_id = $nightid ");
+		if ($status == 1){
+			mysql_query("UPDATE users SET attends = attends + 1 WHERE uname = '$uname'");
+		} else {
+			mysql_query("UPDATE users SET penalties = penalties + 1 WHERE uname = '$uname'");
+		}
+		$query = mysql_query("SELECT attends, penalties FROM users WHERE uname = '$uname'");
+		$result = mysql_fetch_array($query,MYSQL_ASSOC);
+		$star = calc_star($result['attends'],$result['penalties']);
+		mysql_query("UPDATE users SET star = $star WHERE uname = '$uname'");
+	}
+	
+	header("Location: confirmattendance.php?success");
+	exit();
+	
  }
  
  ?>

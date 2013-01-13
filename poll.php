@@ -28,8 +28,7 @@ if (empty($_GET)){
 } elseif (empty($_POST) ==false){
 	$nightid = array_pop($_POST);
 	$data = array_unique($_POST);
-	if(count($data) == count($_POST) && max($data) < 6){
-		echo "we are ok to this point ";	
+	if(count($data) == count($_POST) && max($data) < 6){	
 		register_votes($data,$nightid,$user_data['uname']);
 
 	}else {

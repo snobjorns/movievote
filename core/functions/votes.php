@@ -10,5 +10,21 @@
 	} 
  }
  
+ function get_participants($nightid){
+	$query = mysql_query("SELECT voter FROM votes WHERE night_id = $nightid AND status = 0 GROUP BY voter");
+	$results = array();
+	while($row = mysql_fetch_assoc($query)) {
+		$results[] = $row['voter'];
+	}
+	return $results;
+ }
+ 
+ function confirm_att($array,$nightid){
+	$unames =array_keys($array);
+	$fields = "(voter = '" .implode("' OR voter = '",$unames) . "')";
+	mysql_query("UPDATE votes SET status = 1 WHERE $fields AND night_id = $nightid ");
+
+		//change attend/star on users
+ }
  
  ?>

@@ -79,5 +79,18 @@
 	exit();
 	//echo "INSERT INTO users ($fields) VALUES ($data)";
  }
+
+
+ function list_users(){
+  
+	$users = array();
+	$query = mysql_query("SELECT uname,star FROM users ORDER BY star DESC");
+	while ($row = mysql_fetch_array($query, MYSQL_BOTH)){ 
+		$users[$row['uname']] = $row['star'];
+	}
+	return $users;
+ 
+ 
+ }
  
  ?>

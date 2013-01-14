@@ -42,7 +42,7 @@ if (empty($_GET)){
 
 	$nightid = $_GET['id'];
 	$night = get_night_data($nightid); 
-	if ($time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60) /*&& user has not voted*/) {
+	if ($time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60) && check_if_voted($user_data['uid'],$nightid) == true ) {
 		$movies = get_movie_datas($nightid);
 		$items = array();
 		array_push($items, "picture","name","votes","votevalue");
@@ -73,6 +73,9 @@ if (empty($_GET)){
 		echo "<input type='hidden' name='nightid' value='". $nightid ."'>";
 
 		echo "<input type ='submit' value ='VOTE!'>";
+	} else {
+	
+		echo "<h2> You have already voted or the polls are closed </h2>";
 	} 
 }
 

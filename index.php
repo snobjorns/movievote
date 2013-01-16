@@ -11,7 +11,7 @@ $nighttime = datehour_to_time($data['nightdate'],$data['nighttime']);
 
 
 		
-<?php 
+<?php  
 
       echo "<h1>Next movienight has the theme <a href = poll.php?id=".$data['nightid'].">".$data['theme']."</a></h1>";
 	  

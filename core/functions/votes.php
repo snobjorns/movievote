@@ -20,8 +20,12 @@
  }
  
  function calc_star($n, $p){
-	 return (1+log10(2*$n+1))/(2^(($p/($n+1))));
- }
+	 $n = floatval($n);
+	 $p = floatval($p);
+//	 return (1+log10(2*$n+1))/(2^(($p/($n+1))));
+	 return (1+log10(2*$n+1));
+
+	 }
  
  function confirm_att($array,$nightid){
 	$unames =array_keys($array);

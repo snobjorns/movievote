@@ -31,7 +31,7 @@ $nextid = latest_night_id() + 1;
 					if($omdb['Response'] == true){
 						$movies[] = array(
 						'name' 	=> $omdb['Title'],
-						'picture'	=> $omdb['Poster'],
+						'picture'	=> dl_poster($omdb['Poster'],$omdb['imdbID']),
 						'imdb' 		=> "http://www.imdb.com/title/" . $omdb['imdbID'],
 						'nightid' 	=> $nextid,
 						'nightdate' => $_POST['date'],

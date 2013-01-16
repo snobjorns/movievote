@@ -45,4 +45,11 @@ return $result;
 }
 
 
+function dl_poster($link,$name){
+	$img = 'posters/'. $name.'.jpg';
+	file_put_contents($img, file_get_contents($link));
+	return $img;
+}
+
+
  ?>

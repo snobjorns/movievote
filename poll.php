@@ -41,40 +41,44 @@ if (empty($_GET)){
 
 	$nightid = $_GET['id'];
 	$night = get_night_data($nightid); 
-	if ($time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60) || check_if_voted($user_data['uname'],$nightid) == false ) {
-		$movies = get_movie_datas($nightid);
-		$items = array();
-		array_push($items, "picture","name","votes","votevalue");
-		
-		echo "<h2>".$night['theme'].", ".$night['nightdate']."</h2>";
-		if ( $time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60)) {
-			echo "The polls closes ". time_to_datehour(day_before($night['nightdate'] .'20:00:00')) ." ." ;
-		}
-		echo "<form action='' method='POST'>";
-		echo "<table border = '1'>";
-		echo "<tr><td></td><td></td><td>Number of Votes</td></tr>";
-		foreach ($movies as $movie){
-			echo "<tr>";
-			foreach ($items as $item){
-				if ($item == 'picture'){
-					echo "<td><img src='".$movie[$item]."' class='poster'></td>";
-				} elseif ($item == 'name' ) {
-					echo "<td><a href='".$movie['imdb']."'>".$movie[$item]."</a></td>";
-				} else {
-					echo"<td><input type='number' name='". $movie['movieid'] ."' min='1' max='5'> </td>";
-					break;
-				}
-				//print_r($items);
+	if (($time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60))) {
+		if( check_if_voted($user_data['uname'],$nightid) == false){ 
+			$movies = get_movie_datas($nightid);
+			$items = array();
+			array_push($items, "picture","name","votes","votevalue");
+			
+			echo "<h2>".$night['theme'].", ".$night['nightdate']."</h2>";
+			if ( $time < (datehour_to_time($night['nightdate'],"20:00:00")-24*60*60)) {
+				echo "The polls closes ". time_to_datehour(day_before($night['nightdate'] .'20:00:00')) ." ." ;
 			}
-			echo "</tr>";
-		}
-		echo "</table>";
-		echo "<input type='hidden' name='nightid' value='". $nightid ."'>";
+			echo "<form action='' method='POST'>";
+			echo "<table border = '1'>";
+			echo "<tr><td></td><td></td><td>Number of Votes</td></tr>";
+			foreach ($movies as $movie){
+				echo "<tr>";
+				foreach ($items as $item){
+					if ($item == 'picture'){
+						echo "<td><img src='".$movie[$item]."' class='poster'></td>";
+					} elseif ($item == 'name' ) {
+						echo "<td><a href='".$movie['imdb']."'>".$movie[$item]."</a></td>";
+					} else {
+						echo"<td><input type='number' name='". $movie['movieid'] ."' min='1' max='5'> </td>";
+						break;
+					}
+					//print_r($items);
+				}
+				echo "</tr>";
+			}
+			echo "</table>";
+			echo "<input type='hidden' name='nightid' value='". $nightid ."'>";
 
-		echo "<input type ='submit' value ='VOTE!'>";
+			echo "<input type ='submit' value ='VOTE!'>";
+		} else{	
+			echo "<h2> You have already voted </h2>";
+		}
 	} else {
 	
-		echo "<h2> You have already voted or the polls are closed </h2>";
+		echo "<h2> The polls are closed </h2>";
 	} 
 }
 

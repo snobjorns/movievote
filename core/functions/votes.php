@@ -21,9 +21,10 @@
  
  function calc_star($n, $p){
 	 $n = floatval($n);
-	 $p = floatval($p);
-//	 return (1+log10(2*$n+1))/(2^(($p/($n+1))));
-	 return (1+log10(2*$n+1));
+	  $p = floatval($p);
+	 $pen = $p/($n+1);
+	 return (1+log10(2*$n+1))/(pow(2,$pen));
+//	 return (1+log10(2*$n+1));
 
 	 }
  

@@ -50,8 +50,7 @@
  }
  
  function check_if_voted($uname,$nightid){
-	$query = mysql_query("SELECT COUNT('voteid') FROM votes WHERE voter = $uname AND night_id = $nightid ");
- 
+	$query = mysql_query("SELECT COUNT('voteid') FROM votes WHERE voter = '$uname' AND night_id = $nightid ");
 		return(mysql_result($query,0 ) > 0) ? true : false;
  }
  

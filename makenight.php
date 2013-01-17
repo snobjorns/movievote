@@ -22,8 +22,6 @@ $nextid = latest_night_id() + 1;
 			
 			$ids = array();
 			array_push($ids, $_POST['id1'], $_POST['id2'], $_POST['id3'], $_POST['id4'], $_POST['id5'] );
-			print_r($_POST);
-			print_r($ids);
 			foreach($ids as $id){
 				if (empty($id) == false){ 
 					$omdb = get_omdbapi($id);

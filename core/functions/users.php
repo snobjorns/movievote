@@ -31,6 +31,13 @@
 	return(isset($_SESSION['uid']) ? true : false);
  }
 
+ function bibsys_exists($bibsys){
+    $bibsys = sanitize($bibsys);
+    $query = mysql_query("SELECT COUNT('bibsys') FROM users WHERE bibsys = '$bibsys' ");
+	return (mysql_result($query, 0) == 1) ? TRUE : FALSE;
+ 
+ }
+
  function is_admin() {
 	global $user_data;
 	return($user_data['admin'] >= 1 ? true : false);
@@ -80,6 +87,34 @@
 	//echo "INSERT INTO users ($fields) VALUES ($data)";
  }
 
+ function update_user($udata){
+     global $user_data;
+     $thisuser = $user_data['uname'];
+     array_walk($udata, 'array_sanitize');
+     foreach ($udata as $key => $link)
+     {
+             if ($udata[$key] == '')
+                     {
+                                 unset($udata[$key]);
+                                     }
+     }
+     if(isset($udata['password'])){
+	    $udata['password'] = md5($udata['password']);
+     }
+        //print_r($udata);
+	$data = "'" . implode("','", $udata)."'";
+    $fields =  implode(",",array_keys($udata));
+    $updates = []; 
+    foreach($udata as $key => $value) {
+        $updates[] = $key ." = ". "'".$value."'";
+    
+    }
+    $insert = implode(",",$updates);
+	mysql_query("UPDATE users SET  $insert WHERE uname = '$thisuser'");
+	header("Location: changeuser.php?success");
+    //exit();
+	//echo "UPDATE users SET $insert WHERE uname ='$thisuser'";
+ }
 
  function list_users(){
   

@@ -29,8 +29,8 @@ protect_page();
             }
         }
         if ($_POST['bibsys'] != "" ) {
-            if (bibsys_exists($_POST['bibsys'])){
-                $error[]= "Bibsys is taken";
+            if (bibsys_exists($_POST['bibsys']) == TRUE){
+                $errors[]= "Bibsys is taken";
             }
         }
 	}

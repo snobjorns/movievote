@@ -32,9 +32,11 @@
  }
 
  function bibsys_exists($bibsys){
+     
     $bibsys = sanitize($bibsys);
-    $query = mysql_query("SELECT COUNT('bibsys') FROM users WHERE bibsys = '$bibsys' ");
-	return (mysql_result($query, 0) == 1) ? TRUE : FALSE;
+    $query = mysql_query("SELECT COUNT('uid') FROM users WHERE bibsys = '$bibsys' ");
+    $result = mysql_result($query, 0);
+    return ($result >= 1) ? TRUE : FALSE;
  
  }
 

@@ -33,7 +33,7 @@
 
  function is_admin() {
 	global $user_data;
-	return($user_data['admin'] == 1 ? true : false);
+	return($user_data['admin'] >= 1 ? true : false);
  }
 
  

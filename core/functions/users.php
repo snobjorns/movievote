@@ -104,7 +104,6 @@
         //print_r($udata);
 	$data = "'" . implode("','", $udata)."'";
     $fields =  implode(",",array_keys($udata));
-    $updates = []; 
     foreach($udata as $key => $value) {
         $updates[] = $key ." = ". "'".$value."'";
     

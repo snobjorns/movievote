@@ -5,6 +5,7 @@
       <ul>
 	  <li><a href ="logout.php">Log out</a></li>
 	  <li><a href="<?php echo "profile.php?username=".$user_data['uname']; ?>">My Profile</a></li>
+	  <li><a href="changeuser.php">Change user data</a></li>
 	  </ul>
     </div>
 </div>

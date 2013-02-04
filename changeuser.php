@@ -2,7 +2,8 @@
  <?php 
  include 'core/init.php';
  include 'includes/overall/overall_head.php';
- 
+protect_page();
+
  if (empty($_POST)=== false){
      if(empty($errors) === true){
         if ($_POST['uname'] != "" ) {

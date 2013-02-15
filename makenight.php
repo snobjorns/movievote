@@ -26,7 +26,7 @@ $nextid = latest_night_id() + 1;
 				if (empty($id) == false){ 
 					$omdb = get_omdbapi($id);
 					print_r($omdb);
-					if($omdb['Response'] == true){
+                    if($omdb['Response'] == true){
 						$movies[] = array(
 						'name' 	=> $omdb['Title'],
 						'picture'	=> dl_poster($omdb['Poster'],$omdb['imdbID']),

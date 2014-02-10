@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Website Title</title>
+    <title>SEF - Movievote</title>
     <meta charset="ISO-8859-4">
     <link rel="stylesheet" href="css/screen.css">
     <link rel="stylesheet" href="css/jquery.clockpick.1.2.9.css">

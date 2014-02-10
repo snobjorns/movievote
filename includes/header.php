@@ -1,6 +1,8 @@
     <header>
-        <h1 class="logo">Logo</h1>
-        <nav>
+        <h1 class="logo">
+        <img src=image/SEF_tittel2.png /> 
+	</h1>
+	<nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="movienights.php">Movie nights</a></li>

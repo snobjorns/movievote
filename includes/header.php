@@ -1,7 +1,7 @@
     <header>
         <h1 class="logo">
-        <img src=image/SEF_tittel2.png /> 
-	</h1>
+        <img src=image/SEF_tittel4.png width=500px /> 
+</h1>
 	<nav>
             <ul>
                 <li><a href="index.php">Home</a></li>

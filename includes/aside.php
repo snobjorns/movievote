@@ -10,9 +10,9 @@
 				}
 				include 'includes/widgets/globalstats.php';
 
+				include 'includes/widgets/door_status.php';
 			} else {
 				include 'includes/widgets/login.php';
 			}
-			include 'includes/widgets/door_status.php';
 			?>
 		</aside>
